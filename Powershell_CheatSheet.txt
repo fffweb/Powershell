@@ -1,0 +1,89 @@
+Powershell Commands
+======================================
+The help system
+update-help -Force = Updates the help
+get-help Get-Service = Gets information about Get-service CMDLET
+Get-Help service = Get-Help Wildcard for CMDLETS with "service" name
+Get-Help Get-Service -detailed = Gets detailed help for Get-service
+Get-Help Get-Service -examples = Gets help with Examples for Get-Service
+Get-Help Get-Service -online = Goes online to find information about Get-Service CMDLET
+Get-Help Get-Service -ShowWindow
+Get-Help gservice = Get-Help Wildcard
+Get-Verb = Gets all the Verbs to use using CMDLET
+========================================================
+Pipeline
+Get-Service | ConvertTo-html -Property name,status | Out-File c:\test.htm
+get-process |where handles -gt 900
+get-process |where handles -gt 900 |sort handles
+Get-ChildItem | select -Property name, length | sort -Property length -Descending
+Get-EventLog -LogName system -Newest 5
+Get-EventLog -LogName system -Newest 5 | gm
+Get-EventLog -LogName system -Newest 5 | select -Property EventID, TimeWritten, Message | sort -Property timewritten | ConvertTo-html | Out-File c:\error.htm
+
+===============================================================================================
+Unlock-ADAccount $idiot
+https://technet.microsoft.com/en-us/library/ee617234.aspx
+
+================================================================================================
+wmic - you can do everything with this, I love it.
+How old is your Windows install?
+wmic os get installdate
+
+List all programs that have Java in the name
+wmic product where "name like '%java%'" get name
+
+Uninstall everything that has toolbar in the name
+wmic product where "name like '%toolbar%'" call uninstall
+
+OEM model number
+wmic csproduct get name
+
+Motherboard model
+wmic baseboard get product
+
+Serial number/service tag
+wmic bios get serialnumber
+
+BIOS version
+wmic bios get SMBIOSBIOSVersion
+
+Spit out all the printers
+wmic printer get Name, Portname, Default
+
+PowerShell equivalents:
+
+gwmi Win32_OperatingSystem | select InstallDate
+gwmi Win32_Product | where {$_.name -like "*java*"} | select name
+(gwmi Win32_Product | where {$_.name -like "*toolbar*"}).uninstall()
+gwmi win32_computersystem | select model
+gwmi win32_baseboard | select product
+gwmi win32_bios | select serialnumber
+gwmi win32_bios | select SMBIOSBIOSVersion
+gwmi win32_printer | select Name, Portname, Default
+
+=============================================================================
+
+Get-$anything | Select [properties] | Export-Csv -notype -path $path
+Need to pick through a list of just about anything? Dump it to CSV and open it in Excel. Sort, filter, create pivot tables - you name it.
+
+Example:
+import-module ActiveDirectory  
+Get-ADComputer -filter * -property * | select DistinguishedName, Name, SID, OperatingSystem, OperatingSystemServicePack, OperatingSystemVersion | Export-Csv -NoType -Path c:\temp\ServerList.csv
+
+============================================================================================
+As recently found:
+"nslookup -type=all _ldap._tcp.dc._msdcs.%userdnsdomain%"
+It finds the domain controllers in the domain.
+
+Converted for powershell
+Resolve-DnsName -Type ALL -Name _ldap._tcp.dc._msdcs.$env:userdnsdomain
+
+=====================================================
+enter-pssession $computername
+
+==============================================
+CMD
+First line says the last time the system was booted. Helpful for when you have users who lie about rebooting or just don't know what that means.
+net statistics workstation
+================================================================================================
+
