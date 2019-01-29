@@ -10,7 +10,8 @@
 Get-Service -ComputerName (Get-Content c:\computers.txt)
 
 #Getting Names from a CSV
-Get-Service -ComputerName (Import-csv C:\Computers.csv | 
+Get-Service -ComputerName (Import-csv C:\Computers.csv).ComputerName
+| 
     Select -ExpandProperty ComputerName)
 
 #Using Get-Adcomputer
