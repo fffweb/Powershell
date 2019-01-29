@@ -13,6 +13,7 @@ $services[0].Status
 $Services[-1].Name
 "Service Name is $($services[4].DisplayName)"
 "Service Name is $($services[4].name.ToUpper())"
+$Service[1...5]
 
 
 
