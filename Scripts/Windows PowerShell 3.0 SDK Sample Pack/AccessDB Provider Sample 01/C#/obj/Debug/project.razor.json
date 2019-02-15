@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "f:\\chanal9\\PowerShell\\Powershell\\Scripts\\Windows PowerShell 3.0 SDK Sample Pack\\AccessDB Provider Sample 01\\C#\\AccessDBProviderSample01.csproj",
+  "TargetFramework": "v4.0",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

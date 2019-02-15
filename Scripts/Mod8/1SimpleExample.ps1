@@ -6,8 +6,8 @@
         [string]$computername   
     )
     Process{
-    
-        If ($psCmdlet.shouldProcess("$Computername")){
+    # should try -verbose and -confirm
+        If ($psCmdlet.shouldProcess("$Computername","Mess it up seriously!")){
             Write-Output 'Im changing something right now'
         }
     }

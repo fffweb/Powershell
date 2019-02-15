@@ -6,7 +6,7 @@
                     ValueFromPipeline=$true,
                     ValueFromPipelineByPropertyName=$true)]
         [String[]]$ComputerName,
-
+# Todo ValidateScript
         [ValidatePattern("\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")]
         [String]$IPAddress,
 

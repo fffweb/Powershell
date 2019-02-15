@@ -22,6 +22,7 @@
             $os=Get-Wmiobject -ComputerName $Computer -Class Win32_OperatingSystem
             $Disk=Get-WmiObject -ComputerName $Computer -class Win32_LogicalDisk -filter "DeviceID='c:'"
             
+            # Todo hashtable
             $Prop=@{
                 'ComputerName'=$computer;
                 'OS Name'=$os.caption;

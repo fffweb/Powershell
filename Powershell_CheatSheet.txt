@@ -10,6 +10,7 @@ Get-Help Get-Service -online = Goes online to find information about Get-Service
 Get-Help Get-Service -ShowWindow
 Get-Help gservice = Get-Help Wildcard
 Get-Verb = Gets all the Verbs to use using CMDLET
+Get-command
 ========================================================
 Pipeline
 Get-Service | ConvertTo-html -Property name,status | Out-File c:\test.htm
@@ -86,4 +87,60 @@ CMD
 First line says the last time the system was booted. Helpful for when you have users who lie about rebooting or just don't know what that means.
 net statistics workstation
 ================================================================================================
+from MVA of powershell
+Scripts> Get-PSDrive
 
+Name           Used (GB)     Free (GB) Provider      Root                                           CurrentLocation
+----           ---------     --------- --------      ----                                           ---------------
+Alias                                  Alias
+C                 196.00         26.66 FileSystem    C:\
+Cert                                   Certificate   \
+D                 220.92          4.25 FileSystem    D:\
+E                 158.32         67.13 FileSystem    E:\
+Env                                    Environment
+F                 457.53          8.22 FileSystem    F:\                                 ...hell\Powershell\Scripts
+Function                               Function
+HKCU                                   Registry      HKEY_CURRENT_USER
+HKLM                                   Registry      HKEY_LOCAL_MACHINE
+Variable                               Variable
+WSMan                                  WSMan
+
+==================== error
+PS F:\chanal9\PowerShell\Powershell> dir Variable:*prefer*
+
+Name                           Value
+----                           -----
+ConfirmPreference              High
+DebugPreference                SilentlyContinue
+ErrorActionPreference          Continue
+ProgressPreference             Continue
+VerbosePreference              SilentlyContinue
+WarningPreference              Continue
+InformationPreference          SilentlyContinue
+WhatIfPreference               False
+
+=============
+PS F:\chanal9\PowerShell\Powershell> alias fl
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           fl -> Format-List
+==============
+get-help Variable:\ErrorView
+==============
+get-command -MOdule Mytools
+=================================Manifest
+
+gps *ss | ft -view oadfdf
+cls;gps *| sort starttime | ft -view starttime
+
+============================= first Session
+how to pipe
+by Value,propertyname, customiz it, parenthtical
+get-ADComputer -filter * | selct -Property @{n='name' ;e={$_.name}} | get-service -name bits
+invoke-command -computername (get-content servers.txt){}
+get-wmiobject -class win32_bios -computername (get-ADComputer -filter *).name
+
+======Certificate
+dir Cert:\CurrentUser -Recurse -CodeSigningCert -OutVariable a
+Set-AuthenticodeSignature -Certificate $Cert -FilePath a.ps1

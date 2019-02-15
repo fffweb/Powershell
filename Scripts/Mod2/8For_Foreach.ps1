@@ -1,7 +1,7 @@
 ﻿# Foreach - used often in our scripting for today
-$services = Get-Service
-ForEach ($service in $services) {
-  $service.Displayname
+$services = Get-Service -Name b*
+ForEach ($s in $services) {
+  $s.Displayname
 }
 
 #For loop
@@ -11,5 +11,7 @@ For ($i=0;$i –lt 5;$i++) {
 
 #Another way
 1..5 | ForEach-Object -process {
-    Start calc
+    Start-Process notepad
 }
+
+Get-PSDrive
